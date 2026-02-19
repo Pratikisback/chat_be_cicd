@@ -1,11 +1,8 @@
 pipeline {
     agent any
 
-    environment {
-        ENV_FILE = credentials('env-docker-file-id')
-    }
-
     stages {
+
         stage('Checkout') {
             steps {
                 git branch: 'master',
@@ -13,9 +10,16 @@ pipeline {
             }
         }
 
+        stage('Inject Env File') {
+            steps {
+                withCredentials([file(credentialsId: '511090a8-01d2-4ec1-bfa9-acba9d753868', variable: 'ENV_FILE')]) {
+                    sh 'cp $ENV_FILE .env.docker'
+                }
+            }
+        }
+
         stage('Build & Deploy') {
             steps {
-                sh 'cp $ENV_FILE .env.docker'
                 sh 'docker compose up --build -d'
             }
         }
