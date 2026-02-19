@@ -42,7 +42,7 @@ app.add_middleware(
 
 @app.get("/")
 def health_check():
-    return JSONResponse({"data":"heath good"})
+    return JSONResponse({"data":"heath good v1"})
 
 
 
