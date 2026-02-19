@@ -11,7 +11,7 @@ pipeline {
 
         stage('Build & Deploy') {
             steps {
-                sh 'docker compose down'
+                sh 'docker stop $(docker ps -q)   '
                 sh 'docker compose up --build -d'
             }
         }
