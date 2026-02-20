@@ -42,7 +42,7 @@ app.add_middleware(
 
 @app.get("/")
 def health_check():
-    return JSONResponse({"data":"heath good v3 after changes in CI/CD, lets test if it is still working as it was working before, now it is tested again"})
+    return JSONResponse({"data":"heath good v3 after changes in CI/CD, lets test if it is still working as it was working before."})
 
 
 
